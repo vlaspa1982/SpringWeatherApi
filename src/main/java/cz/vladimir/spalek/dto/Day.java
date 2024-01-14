@@ -1,5 +1,8 @@
 package cz.vladimir.spalek.dto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Day{
     private double maxtemp_c;
     private double maxtemp_f;
@@ -21,6 +24,16 @@ public class Day{
     private int daily_chance_of_snow;
     private Condition condition;
     private double uv;
+
+    public ArrayList<Hour> getHoursData() {
+        return hoursData;
+    }
+
+    public void setHoursData(ArrayList<Hour> hoursData) {
+        this.hoursData = hoursData;
+    }
+
+    private ArrayList<Hour> hoursData;
 
     public double getMaxtemp_c() {
         return maxtemp_c;

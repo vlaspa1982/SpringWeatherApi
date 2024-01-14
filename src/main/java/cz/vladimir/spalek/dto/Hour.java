@@ -1,6 +1,6 @@
 package cz.vladimir.spalek.dto;
 
-public class Hour{
+public class Hour extends WeatherDto {
     private int time_epoch;
     private String time;
     private double temp_c;

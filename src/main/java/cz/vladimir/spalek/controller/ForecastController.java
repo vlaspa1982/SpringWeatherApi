@@ -27,14 +27,5 @@ public class ForecastController {
         return forecastService.getForecastForCity(cityEnum);
     }
 
-    @RequestMapping("/forecast")
-    Collection<ForecastDto> getForecast(){
-
-        List<ForecastDto> forecastDtoList = new ArrayList<>();
-        for (City city: City.values()){
-            forecastDtoList.add(forecastService.getForecastForCity(city));
-        };
-        return forecastDtoList;
-    }
 
 }

@@ -22,13 +22,11 @@ public class WeatherController {
     @RequestMapping("/weather/{city}")
     WeatherDto getWeatherForCity(@PathVariable("city") java.lang.String city){
     City cityEnum = City.valueOf(city.toUpperCase());
-        //WeatherService weatherService = new WeatherService();
         return weatherService.getWeatherForCity(cityEnum);
     }
     @CrossOrigin
     @RequestMapping("/weather")
     Collection<WeatherDto> getWeather(){
-        //WeatherService weatherService = new WeatherService();
         List<WeatherDto> weatherDtoList = new ArrayList<>();
         for (City city: City.values()){
             weatherDtoList.add(weatherService.getWeatherForCity(city));

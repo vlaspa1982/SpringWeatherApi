@@ -57,6 +57,7 @@ public class WeatherDto {
         this.weather_description = weather_description;
     }
 
+
     private String location;
     private String timestamp;
     private double temp_celsius;

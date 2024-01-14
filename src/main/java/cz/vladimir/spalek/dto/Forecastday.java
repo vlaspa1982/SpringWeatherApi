@@ -1,5 +1,7 @@
 package cz.vladimir.spalek.dto;
 
+import java.util.ArrayList;
+
 public class Forecastday {
 
 
@@ -7,7 +9,15 @@ public class Forecastday {
     private int date_epoch;
     private Day day;
 
-    private java.util.ArrayList<Hour> hour;
+    public ArrayList<Hour> getHour() {
+        return hour;
+    }
+
+    public void setHour(ArrayList<Hour> hour) {
+        this.hour = hour;
+    }
+
+    private ArrayList<Hour> hour;
 
 
     public String getDate() {
@@ -33,11 +43,5 @@ public class Forecastday {
         this.day = day;
     }
 
-    public java.util.ArrayList<Hour> getHour() {
-        return hour;
-    }
 
-    public void setHour(java.util.ArrayList<Hour> hour) {
-        this.hour = hour;
-    }
 }

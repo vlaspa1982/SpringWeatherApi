@@ -5,10 +5,9 @@ import cz.vladimir.spalek.connector.ForecastApiConnector;
 import cz.vladimir.spalek.dto.*;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.Collection;
+
 @Service
 
 public class ForecastService {
@@ -20,12 +19,20 @@ public class ForecastService {
         return forecastDto;
     }
 
-    private static ForecastDto transformForecastDto(ForecastApiDto forecastApiDto) {
-        List<Forecastday> days = new ArrayList<Forecastday>();
+    private ForecastDto transformForecastDto(ForecastApiDto forecastApiDto) {
         ForecastDto forecastDto = new ForecastDto();
-
-        forecastDto.setLocation(forecastApiDto.getLocation().getName());
-        forecastDto.setWeather_description_0(forecastApiDto.getCurrent().getCondition().getText());
+        for (int i = 0; i < forecastApiDto.getForecast().getForecastday().size(); i++) {
+            Forecastday fDay = forecastApiDto.getForecast().getForecastday().get(i);
+            forecastDto.getDailydata().add(new DailyDto());
+            ArrayList<Hour> hours = fDay.getHour();
+            for (int j = 0; j < hours.size(); j++) {
+                HourlyDto wDto = new HourlyDto();
+                wDto.setTemp_c(hours.get(j).getTemp_c());
+                wDto.setWind_kph(hours.get(j).getWind_kph());
+                wDto.setHumidity(hours.get(j).getHumidity());
+                forecastDto.getDailydata().get(i).getHours().add(wDto);
+            }
+        }
         return forecastDto;
     }
 }
